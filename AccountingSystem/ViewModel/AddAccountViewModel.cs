@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 using AccountingSystem.Domain.Concrete;
@@ -9,6 +10,27 @@ namespace AccountingSystem.ViewModel
     public class AddAccountViewModel : INotifyPropertyChanged
     {
         /// <summary>
+        /// Gets or sets Name
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets Age
+        /// </summary>
+        public int Age { get; set; }
+
+        /// <summary>
+        /// Gets or sets Email
+        /// </summary>
+        public string Email { get; set; }
+
+        /// <summary>
+        /// Gets or sets 
+        /// </summary>
+        public Action CloseAction { get; set; }
+
+
+        /// <summary>
         /// Add entity to database
         /// </summary>
         public ICommand AddCommand { get; set; }
@@ -18,14 +40,22 @@ namespace AccountingSystem.ViewModel
         /// </summary>
         public ICommand CancelCommand { get; set; }
 
+
         public AddAccountViewModel()
         {
-            AddCommand = new RelayCommandWithParameter<User>(AddUser);
-            CancelCommand = new RelayCommandWithParameter<Window>(Cancel);
+            AddCommand = new RelayCommand(AddUser);
+            CancelCommand = new RelayCommand(Cancel);
         }
 
-        public void AddUser(User user)
+        //FIXME - delete unnecessary objects in RelayCommand
+        public void AddUser(object obj)
         {
+            var user = new User()
+            {
+                Age = Age,
+                Email = Email,
+                Name = Name
+            };
             using (var db = new EfDatabaseContext())
             {
                 db.Users.Attach(user);
@@ -34,9 +64,9 @@ namespace AccountingSystem.ViewModel
             }
         }
 
-        public void Cancel(Window window)
+        //FIXME - delete unnecessary objects in RelayCommand
+        public void Cancel(object obj)
         {
-            window?.Close();
         }
 
         #region INotifyPropertyChanged implementation

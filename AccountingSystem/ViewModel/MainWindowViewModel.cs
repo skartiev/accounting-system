@@ -31,7 +31,6 @@ namespace AccountingSystem.ViewModel
         #endregion
 
         #region Commands
-
         /// <summary>
         /// Show message box with text
         /// </summary>
@@ -77,7 +76,6 @@ namespace AccountingSystem.ViewModel
             var addAccountWindow = App.Container.Resolve<AddAccount>();
             addAccountWindow.Show();
         }
-
 
         #region Private methods
         private static void ShowMessage(object obj)
