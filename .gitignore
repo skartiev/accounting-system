@@ -1,0 +1,17 @@
+*.suo
+*.log
+*.user
+
+.[Vv]s/
+
+[Ii]nstall
+
+[Bb]in*/
+[Pp]ackages*/
+[Oo]bj*/
+[Dd]ebug*/
+[Rr]elease*/
+
+[Ii]nstall*/
+[Rr]esourcesZip*/
+[Ll]ogs*/
