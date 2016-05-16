@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountingSystem", "AccountingSystem\AccountingSystem.csproj", "{49D3F361-6900-4FF3-AF0A-152B2006FB87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountingSystem.Domain", "AccountingSystem.Domain\AccountingSystem.Domain.csproj", "{7B6D1561-212A-45F5-B7E4-F79776E7EF99}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountingSystem.DataAccess", "AccountingSystem.DataAccess\AccountingSystem.DataAccess.csproj", "{7B6D1561-212A-45F5-B7E4-F79776E7EF99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

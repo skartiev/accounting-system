@@ -49,7 +49,7 @@ namespace AccountingSystem.ViewModel
         public MainWindowViewModel(IUserRepository userRepository)
         {
             UserRepository = userRepository;
-            Users = UserRepository.Users.ToList();
+            Users = UserRepository.GetUsers().ToList();
 
             ShowCommand = new RelayCommandWithParameter<string>(ShowMessage, param => true);
             AddCommand = new RelayCommand(ShowAddWindow);
@@ -58,16 +58,12 @@ namespace AccountingSystem.ViewModel
 
         public void DeleteRow()
         {
-            using (var db = UserRepository.Context)
+            foreach (var user in SelectedUsers)
             {
-                foreach (var user in SelectedUsers)
-                {
-                    db.Users.Attach(user);
-                    db.Users.Remove(user);
-                    db.SaveChanges();
-                }           
-                UpdateFromDb();     
+                UserRepository.DeleteUser(user);
+                UserRepository.Save();
             }
+            UpdateFromDb();          
         }
 
         private static void ShowAddWindow()
@@ -77,9 +73,9 @@ namespace AccountingSystem.ViewModel
         }
 
         #region Private methods
-        private static void ShowMessage(string obj)
+        private static void ShowMessage(string text)
         {
-            MessageBox.Show(obj);
+            MessageBox.Show(text);
         }
 
         private void UpdateFromDb()

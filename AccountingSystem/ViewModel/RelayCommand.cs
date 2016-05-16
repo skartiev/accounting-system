@@ -10,7 +10,6 @@ namespace AccountingSystem.ViewModel
         public RelayCommand(Action action)
         {
             Action = action;
-
         }
 
         #region ICommand Members

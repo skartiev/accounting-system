@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
+using AccountingSystem.Domain.Abstract;
 using AccountingSystem.Domain.Concrete;
 using AccountingSystem.Domain.Entities;
 using AccountingSystem.Model;
@@ -26,10 +27,9 @@ namespace AccountingSystem.ViewModel
         public string Email { get; set; }
 
         /// <summary>
-        /// Gets or sets 
+        /// Gets or sets User repository
         /// </summary>
-        public Action CloseAction { get; set; }
-
+        private IUserRepository UserRepository { get; set; }
 
         /// <summary>
         /// Add entity to database
@@ -46,6 +46,8 @@ namespace AccountingSystem.ViewModel
         {
             AddCommand = new RelayCommandWithParameter<ICloseable>(AddUser);
             CancelCommand = new RelayCommandWithParameter<ICloseable>(Cancel);
+
+            UserRepository = new UsersRepository(new EfDatabaseContext());
         }
 
         public void AddUser(ICloseable window)
@@ -56,12 +58,10 @@ namespace AccountingSystem.ViewModel
                 Email = Email,
                 Name = Name
             };
-            using (var db = new EfDatabaseContext())
-            {
-                db.Users.Attach(user);
-                db.Users.Add(user);
-                db.SaveChanges();
-            }
+
+            UserRepository.AddUser(user);
+            UserRepository.Save();
+
             window.Close();
         }
 

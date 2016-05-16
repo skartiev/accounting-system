@@ -155,9 +155,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AccountingSystem.Domain\AccountingSystem.Domain.csproj">
+    <ProjectReference Include="..\AccountingSystem.DataAccess\AccountingSystem.DataAccess.csproj">
       <Project>{7b6d1561-212a-45f5-b7e4-f79776e7ef99}</Project>
-      <Name>AccountingSystem.Domain</Name>
+      <Name>AccountingSystem.DataAccess</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
