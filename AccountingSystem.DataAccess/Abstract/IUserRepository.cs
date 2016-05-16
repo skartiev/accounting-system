@@ -12,8 +12,6 @@ namespace AccountingSystem.Domain.Abstract
         void DeleteUser(User user);
         void UpdateUser(User user);
         void Save();
-
-
         EfDatabaseContext Context { get; set; }
 
     }

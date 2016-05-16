@@ -7,19 +7,19 @@ namespace AccountingSystem.Domain.Concrete
 {
     public class UsersRepository : IUserRepository
     {
+        /// <summary>
+        /// Context of DB
+        /// </summary>
         public EfDatabaseContext Context { get; set; }
-        public IEnumerable<User> Users { get; set; }
 
         public UsersRepository()
         {
             Context = new EfDatabaseContext();
-            Users = Context.Users;
         }
 
         public UsersRepository(EfDatabaseContext context)
         {
             Context = context;
-            Users = Context.Users;
         }
        
         public IEnumerable<User> GetUsers()

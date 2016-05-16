@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using AccountingSystem.Domain.Abstract;
+using AccountingSystem.Domain.Concrete;
 using AccountingSystem.Domain.Entities;
 using AccountingSystem.View;
 using Microsoft.Practices.Unity;
@@ -24,9 +25,9 @@ namespace AccountingSystem.ViewModel
         public List<User> Users { get; set; }
 
         /// <summary>
-        /// Get user repository
+        /// Gets or sets unit of work design pattern
         /// </summary>
-        private IUserRepository UserRepository { get; }
+        private UnitOfWork UnitOfWork { get; set; }
         #endregion
 
         #region Commands
@@ -48,8 +49,9 @@ namespace AccountingSystem.ViewModel
 
         public MainWindowViewModel(IUserRepository userRepository)
         {
-            UserRepository = userRepository;
-            Users = UserRepository.GetUsers().ToList();
+            UnitOfWork = new UnitOfWork();
+            //UserRepository = userRepository;
+            Users = UnitOfWork.UsersRepository.Get(includeProperties:"User").ToList();
 
             ShowCommand = new RelayCommandWithParameter<string>(ShowMessage, param => true);
             AddCommand = new RelayCommand(ShowAddWindow);
@@ -60,8 +62,8 @@ namespace AccountingSystem.ViewModel
         {
             foreach (var user in SelectedUsers)
             {
-                UserRepository.DeleteUser(user);
-                UserRepository.Save();
+                UnitOfWork.UsersRepository.Delete(user);
+                UnitOfWork.Save();
             }
             UpdateFromDb();          
         }
@@ -80,17 +82,15 @@ namespace AccountingSystem.ViewModel
 
         private void UpdateFromDb()
         {
-            using (var db = UserRepository.Context)
-            {
-                Users = db.Users.ToList();
+            Users = UnitOfWork.UsersRepository.Get().ToList();
 
-                if (SelectedUsers == null)
-                {
-                    SelectedUsers = Users;
-                }
-                NotifyPropertyChanged("SelectedUsers");
-                NotifyPropertyChanged("Users");
+            if (SelectedUsers == null)
+            {
+                SelectedUsers = Users;
             }
+            NotifyPropertyChanged("SelectedUsers");
+            NotifyPropertyChanged("Users");
+            
         }
         #endregion
 

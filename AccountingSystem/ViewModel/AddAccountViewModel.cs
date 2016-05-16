@@ -11,6 +11,7 @@ namespace AccountingSystem.ViewModel
 {
     public class AddAccountViewModel : INotifyPropertyChanged
     {
+        private UnitOfWork UnitOfWork { get; set; }
         /// <summary>
         /// Gets or sets Name
         /// </summary>
@@ -48,6 +49,7 @@ namespace AccountingSystem.ViewModel
             CancelCommand = new RelayCommandWithParameter<ICloseable>(Cancel);
 
             UserRepository = new UsersRepository(new EfDatabaseContext());
+            UnitOfWork = new UnitOfWork();
         }
 
         public void AddUser(ICloseable window)
@@ -58,10 +60,9 @@ namespace AccountingSystem.ViewModel
                 Email = Email,
                 Name = Name
             };
-
-            UserRepository.AddUser(user);
-            UserRepository.Save();
-
+            UnitOfWork.UsersRepository.Insert(user);
+            UnitOfWork.Save();
+  
             window.Close();
         }
 
