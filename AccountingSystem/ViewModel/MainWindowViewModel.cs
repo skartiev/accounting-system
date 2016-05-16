@@ -27,7 +27,7 @@ namespace AccountingSystem.ViewModel
         /// <summary>
         /// Gets or sets unit of work design pattern
         /// </summary>
-        private UnitOfWork UnitOfWork { get; set; }
+        private UnitOfWork UnitOfWork { get; }
         #endregion
 
         #region Commands
@@ -50,8 +50,7 @@ namespace AccountingSystem.ViewModel
         public MainWindowViewModel(IUserRepository userRepository)
         {
             UnitOfWork = new UnitOfWork();
-            //UserRepository = userRepository;
-            Users = UnitOfWork.UsersRepository.Get(includeProperties:"User").ToList();
+            Users = UnitOfWork.UsersRepository.Get().ToList();
 
             ShowCommand = new RelayCommandWithParameter<string>(ShowMessage, param => true);
             AddCommand = new RelayCommand(ShowAddWindow);
