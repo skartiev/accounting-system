@@ -16,9 +16,7 @@ namespace AccountingSystem
         protected override void OnStartup(StartupEventArgs e)
         {
             Container = new UnityContainer();
-            Container.RegisterType<User>();
-            Container.RegisterType<IUserRepository, UsersRepository>();
-            
+            Container.RegisterType<User>();            
             var window = Container.Resolve<MainWindow>();
             window.Show();
         }

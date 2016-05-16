@@ -47,7 +47,8 @@ namespace AccountingSystem.ViewModel
         public ICommand DeleteRowCommand { get; set; }
         #endregion
 
-        public MainWindowViewModel(IUserRepository userRepository)
+        #region Constructors
+        public MainWindowViewModel()
         {
             UnitOfWork = new UnitOfWork();
             Users = UnitOfWork.UsersRepository.Get().ToList();
@@ -56,29 +57,44 @@ namespace AccountingSystem.ViewModel
             AddCommand = new RelayCommand(ShowAddWindow);
             DeleteRowCommand = new RelayCommand(DeleteRow);
         }
+        #endregion
 
-        public void DeleteRow()
-        {
-            foreach (var user in SelectedUsers)
-            {
-                UnitOfWork.UsersRepository.Delete(user);
-                UnitOfWork.Save();
-            }
-            UpdateFromDb();          
-        }
+        #region Private Methods
 
+        /// <summary>
+        /// Call add user window
+        /// </summary>
         private static void ShowAddWindow()
         {
             var addAccountWindow = App.Container.Resolve<AddAccount>();
             addAccountWindow.Show();
         }
 
-        #region Private methods
+        /// <summary>
+        /// Delete row fucntionality on delete keyboard button 
+        /// </summary>
+        private void DeleteRow()
+        {
+            foreach (var user in SelectedUsers)
+            {
+                UnitOfWork.UsersRepository.Delete(user);
+                UnitOfWork.Save();
+            }
+            UpdateFromDb();
+        }
+
+        /// <summary>
+        /// Shom messagebox with message
+        /// </summary>
+        /// <param name="text"></param>
         private static void ShowMessage(string text)
         {
             MessageBox.Show(text);
         }
 
+        /// <summary>
+        /// Update info from actual BD to view changes
+        /// </summary>
         private void UpdateFromDb()
         {
             Users = UnitOfWork.UsersRepository.Get().ToList();

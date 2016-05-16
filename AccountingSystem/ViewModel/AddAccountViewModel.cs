@@ -11,6 +11,8 @@ namespace AccountingSystem.ViewModel
 {
     public class AddAccountViewModel : INotifyPropertyChanged
     {
+        #region Properties
+
         private UnitOfWork UnitOfWork { get; }
         /// <summary>
         /// Gets or sets Name
@@ -27,6 +29,9 @@ namespace AccountingSystem.ViewModel
         /// </summary>
         public string Email { get; set; }
 
+        #endregion
+
+        #region Commands
         /// <summary>
         /// Add entity to database
         /// </summary>
@@ -37,6 +42,9 @@ namespace AccountingSystem.ViewModel
         /// </summary>
         public ICommand CancelCommand { get; set; }
 
+        #endregion
+
+        #region Constructors
 
         public AddAccountViewModel()
         {
@@ -46,7 +54,14 @@ namespace AccountingSystem.ViewModel
             UnitOfWork = new UnitOfWork();
         }
 
-        public void AddUser(ICloseable window)
+        #endregion
+
+        #region Private methods
+        /// <summary>
+        /// Add user click handler command
+        /// </summary>
+        /// <param name="window"></param>
+        private void AddUser(ICloseable window)
         {
             var user = new User()
             {
@@ -54,16 +69,22 @@ namespace AccountingSystem.ViewModel
                 Email = Email,
                 Name = Name
             };
+
             UnitOfWork.UsersRepository.Insert(user);
             UnitOfWork.Save();
   
             window.Close();
         }
 
-        public void Cancel(ICloseable window)
+        /// <summary>
+        /// Cancel click handler command
+        /// </summary>
+        /// <param name="window"></param>
+        private static void Cancel(ICloseable window)
         {
             window?.Close();
         }
+        #endregion
 
         #region INotifyPropertyChanged implementation
 

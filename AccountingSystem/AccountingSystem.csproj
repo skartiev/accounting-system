@@ -71,6 +71,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Reactive.Core, Version=2.0.20823.0, Culture=neutral, PublicKeyToken=f300afd708cefcd3, processorArchitecture=MSIL" />
+    <Reference Include="System.Reactive.Interfaces, Version=2.0.20823.0, Culture=neutral, PublicKeyToken=f300afd708cefcd3, processorArchitecture=MSIL" />
+    <Reference Include="System.Reactive.Linq, Version=2.0.20823.0, Culture=neutral, PublicKeyToken=f300afd708cefcd3, processorArchitecture=MSIL" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
@@ -112,6 +115,12 @@
     </Compile>
     <Compile Include="Model\ICloseable.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Service\DelegateRule.cs" />
+    <Compile Include="Service\Disposable.cs" />
+    <Compile Include="Service\NotifyDataErrorInfo.cs" />
+    <Compile Include="Service\NotifyPropertyChanges.cs" />
+    <Compile Include="Service\Rule.cs" />
+    <Compile Include="Service\RuleCollection.cs" />
     <Compile Include="ViewModel\AddAccountViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />

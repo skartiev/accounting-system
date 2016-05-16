@@ -18,6 +18,7 @@ namespace AccountingSystem.View
         {
             SelectedItemsList = SelectedItems.OfType<User>().ToList(); //this.SelectedItems;
         }
+
         // FIXME: remove reference to User
         public IList<User> SelectedItemsList
         {

@@ -69,4 +69,4 @@ namespace AccountingSystem.ViewModel
         #endregion
     }
 
-    }
+}

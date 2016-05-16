@@ -9,14 +9,14 @@ namespace AccountingSystem.Domain.Concrete
 {
     public class UnitOfWork : IDisposable
     {
-        private EfDatabaseContext _context = new EfDatabaseContext();
+        private readonly EfDatabaseContext _context = new EfDatabaseContext();
         private GenericRepository<User> _usersRepository;
 
-        public GenericRepository<User> UsersRepository
-        {
-            get { return _usersRepository ?? (_usersRepository = new GenericRepository<User>(_context)); }
-        }
+        public GenericRepository<User> UsersRepository => _usersRepository ?? (_usersRepository = new GenericRepository<User>(_context));
 
+        /// <summary>
+        /// Saving changes of UnitOfWork
+        /// </summary>
         public void Save()
         {
             _context.SaveChanges();
