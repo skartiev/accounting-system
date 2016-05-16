@@ -44,7 +44,7 @@ namespace AccountingSystem.ViewModel
 
         public bool CanExecute(object parameter)
         {
-            return _canExecute?.Invoke((T)parameter) ?? true;
+            return _canExecute?.Invoke((T) parameter) ?? true;
         }
 
         public event EventHandler CanExecuteChanged
@@ -63,10 +63,9 @@ namespace AccountingSystem.ViewModel
 
         public void Execute(object parameter)
         {
-            _execute((T)parameter);
+            _execute((T) parameter);
         }
 
         #endregion
     }
-
 }

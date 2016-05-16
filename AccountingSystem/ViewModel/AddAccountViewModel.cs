@@ -1,8 +1,5 @@
-﻿using System;
-using System.ComponentModel;
-using System.Windows;
+﻿using System.ComponentModel;
 using System.Windows.Input;
-using AccountingSystem.Domain.Abstract;
 using AccountingSystem.Domain.Concrete;
 using AccountingSystem.Domain.Entities;
 using AccountingSystem.Model;

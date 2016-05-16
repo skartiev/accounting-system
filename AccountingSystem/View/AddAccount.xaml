@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="Add Account" Height="273" Width="311">
     <StackPanel HorizontalAlignment="Left" Height="228" Margin="10,10,0,0" VerticalAlignment="Top" Width="281">
-        <telerik:Label x:Name="lblName" Content="Name"/>
+        <Label x:Name="lblName" Content="Name"/>
         <TextBox x:Name="txbName" Height="23" TextWrapping="Wrap" Text="{Binding Name}"/>
         <Label x:Name="lblAge" Content="Age"/>
         <TextBox x:Name="txbAge" Height="23" TextWrapping="Wrap" Text="{Binding Age}"/>

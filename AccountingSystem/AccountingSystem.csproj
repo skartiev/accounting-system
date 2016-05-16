@@ -85,11 +85,6 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="Telerik.Windows.Controls, Version=2016.2.503.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Windows.Controls.EntityFramework60, Version=2016.2.503.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Windows.Controls.GridView, Version=2016.2.503.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Windows.Controls.Input, Version=2016.2.503.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Windows.Data, Version=2016.2.503.45, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
     <Reference Include="UIAutomationProvider" />
     <Reference Include="UIAutomationTypes" />
     <Reference Include="WindowsBase" />
@@ -122,6 +117,7 @@
     <Compile Include="Service\Rule.cs" />
     <Compile Include="Service\RuleCollection.cs" />
     <Compile Include="ViewModel\AddAccountViewModel.cs" />
+    <Compile Include="ViewModel\DelegateCommand.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\RelayCommandWithParameter.cs" />

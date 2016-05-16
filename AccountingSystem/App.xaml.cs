@@ -1,6 +1,4 @@
 ﻿using System.Windows;
-using AccountingSystem.Domain.Abstract;
-using AccountingSystem.Domain.Concrete;
 using AccountingSystem.Domain.Entities;
 using AccountingSystem.View;
 using Microsoft.Practices.Unity;

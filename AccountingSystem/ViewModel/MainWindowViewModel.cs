@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using AccountingSystem.Domain.Abstract;
 using AccountingSystem.Domain.Concrete;
 using AccountingSystem.Domain.Entities;
 using AccountingSystem.View;
@@ -45,6 +44,12 @@ namespace AccountingSystem.ViewModel
         /// Delete selected row on delete keyboard button 
         /// </summary>
         public ICommand DeleteRowCommand { get; set; }
+
+        /// <summary>
+        /// On add user window closing
+        /// </summary>
+        public ICommand WindowClosing { get; private set; }
+
         #endregion
 
         #region Constructors
@@ -56,6 +61,7 @@ namespace AccountingSystem.ViewModel
             ShowCommand = new RelayCommandWithParameter<string>(ShowMessage, param => true);
             AddCommand = new RelayCommand(ShowAddWindow);
             DeleteRowCommand = new RelayCommand(DeleteRow);
+            WindowClosing = new DelegateCommand(OnAddWindowClosing);
         }
         #endregion
 
@@ -106,6 +112,11 @@ namespace AccountingSystem.ViewModel
             NotifyPropertyChanged("SelectedUsers");
             NotifyPropertyChanged("Users");
             
+        }
+
+        public void OnAddWindowClosing(object obj)
+        {
+            UpdateFromDb();
         }
         #endregion
 
