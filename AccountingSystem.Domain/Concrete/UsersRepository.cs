@@ -13,7 +13,6 @@ namespace AccountingSystem.Domain.Concrete
         {
             Context = new EfDatabaseContext();
             Users = Context.Users;
-
         }
     }
 }

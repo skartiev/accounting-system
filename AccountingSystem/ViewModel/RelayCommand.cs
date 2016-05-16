@@ -5,71 +5,28 @@ namespace AccountingSystem.ViewModel
 {
     public class RelayCommand : ICommand
     {
-        private Action<object> _execute;
-        private Predicate<object> _canExecute;
-        private event EventHandler CanExecuteChangedInternal;
+        private Action Action { get; }
 
-        public RelayCommand(Action<object> execute)
-            : this(execute, DefaultCanExecute)
+        public RelayCommand(Action action)
         {
+            Action = action;
+
         }
 
-        public RelayCommand(Action<object> execute, Predicate<object> canExecute)
-        {
-            if (execute == null)
-            {
-                throw new ArgumentNullException(nameof(execute));
-            }
-
-            if (canExecute == null)
-            {
-                throw new ArgumentNullException(nameof(canExecute));
-            }
-
-            _execute = execute;
-            _canExecute = canExecute;
-        }
-
-        public event EventHandler CanExecuteChanged
-        {
-            add
-            {
-                CommandManager.RequerySuggested += value;
-                CanExecuteChangedInternal += value;
-            }
-
-            remove
-            {
-                CommandManager.RequerySuggested -= value;
-                CanExecuteChangedInternal -= value;
-            }
-        }
+        #region ICommand Members
 
         public bool CanExecute(object parameter)
         {
-            return _canExecute != null && _canExecute(parameter);
+            return true;
         }
+
+        public event EventHandler CanExecuteChanged;
 
         public void Execute(object parameter)
         {
-            _execute(parameter);
+            Action();
         }
 
-        public void OnCanExecuteChanged()
-        {
-            var handler = CanExecuteChangedInternal;
-            handler?.Invoke(this, EventArgs.Empty);
-        }
-
-        public void Destroy()
-        {
-            _canExecute = _ => false;
-            _execute = _ => { };
-        }
-
-        private static bool DefaultCanExecute(object parameter)
-        {
-            return true;
-        }
+        #endregion
     }
 }

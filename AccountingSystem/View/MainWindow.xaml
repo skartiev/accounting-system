@@ -10,12 +10,12 @@
         mc:Ignorable="d"
         Title="Accounting System" Height="350" Width="491.603">
     <Grid Margin="0,0,2,0">
-        <view:CustomDataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="238" Width="460" ItemsSource="{Binding Path = Users}" SelectedItemsList="{Binding Path=SelectedUsers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-           <DataGrid.InputBindings>
+        <view:CustomDataGrid x:Name="dataGrid" Margin="10,10,12,0" VerticalAlignment="Top" Height="238" ItemsSource="{Binding Path = Users}" SelectedItemsList="{Binding Path=SelectedUsers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <DataGrid.InputBindings>
                 <KeyBinding Key="Delete" Command="{Binding DeleteRowCommand}"/>
                 <KeyBinding Key="Back" Command="{Binding DeleteRowCommand}"/>
-           </DataGrid.InputBindings>
-            
+            </DataGrid.InputBindings>
+
         </view:CustomDataGrid>
         <Button x:Name="button" Content="Show message" HorizontalAlignment="Left" Margin="273,274,0,0" VerticalAlignment="Top" Width="197" Command="{Binding ShowCommand}" CommandParameter="Hello"/>
         <Button x:Name="btnAdd" Content="Add Account" HorizontalAlignment="Left" Margin="10,274,0,0" VerticalAlignment="Top" Width="197" Command="{Binding AddCommand}"/>

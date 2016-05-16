@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Input;
 using AccountingSystem.Domain.Concrete;
 using AccountingSystem.Domain.Entities;
+using AccountingSystem.Model;
 
 namespace AccountingSystem.ViewModel
 {
@@ -43,12 +44,11 @@ namespace AccountingSystem.ViewModel
 
         public AddAccountViewModel()
         {
-            AddCommand = new RelayCommand(AddUser);
-            CancelCommand = new RelayCommand(Cancel);
+            AddCommand = new RelayCommandWithParameter<ICloseable>(AddUser);
+            CancelCommand = new RelayCommandWithParameter<ICloseable>(Cancel);
         }
 
-        //FIXME - delete unnecessary objects in RelayCommand
-        public void AddUser(object obj)
+        public void AddUser(ICloseable window)
         {
             var user = new User()
             {
@@ -62,11 +62,12 @@ namespace AccountingSystem.ViewModel
                 db.Users.Add(user);
                 db.SaveChanges();
             }
+            window.Close();
         }
 
-        //FIXME - delete unnecessary objects in RelayCommand
-        public void Cancel(object obj)
+        public void Cancel(ICloseable window)
         {
+            window?.Close();
         }
 
         #region INotifyPropertyChanged implementation

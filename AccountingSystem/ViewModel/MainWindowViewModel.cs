@@ -4,7 +4,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using AccountingSystem.Domain.Abstract;
-using AccountingSystem.Domain.Concrete;
 using AccountingSystem.Domain.Entities;
 using AccountingSystem.View;
 using Microsoft.Practices.Unity;
@@ -52,12 +51,12 @@ namespace AccountingSystem.ViewModel
             UserRepository = userRepository;
             Users = UserRepository.Users.ToList();
 
-            ShowCommand = new RelayCommand(ShowMessage, param => true);
+            ShowCommand = new RelayCommandWithParameter<string>(ShowMessage, param => true);
             AddCommand = new RelayCommand(ShowAddWindow);
             DeleteRowCommand = new RelayCommand(DeleteRow);
         }
 
-        public void DeleteRow(object obj)
+        public void DeleteRow()
         {
             using (var db = UserRepository.Context)
             {
@@ -71,16 +70,16 @@ namespace AccountingSystem.ViewModel
             }
         }
 
-        private static void ShowAddWindow(object obj)
+        private static void ShowAddWindow()
         {
             var addAccountWindow = App.Container.Resolve<AddAccount>();
             addAccountWindow.Show();
         }
 
         #region Private methods
-        private static void ShowMessage(object obj)
+        private static void ShowMessage(string obj)
         {
-            MessageBox.Show(obj.ToString());
+            MessageBox.Show(obj);
         }
 
         private void UpdateFromDb()
