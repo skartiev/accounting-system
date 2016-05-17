@@ -54,6 +54,7 @@
     <Compile Include="Concrete\GenericRepository.cs" />
     <Compile Include="Concrete\UnitOfWork.cs" />
     <Compile Include="Concrete\UsersRepository.cs" />
+    <Compile Include="Entities\BankAccount.cs" />
     <Compile Include="Entities\Account.cs" />
     <Compile Include="Entities\Currency.cs" />
     <Compile Include="Entities\DateRange.cs" />

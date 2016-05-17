@@ -7,8 +7,18 @@ namespace AccountingSystem.Domain.Concrete
     {
         private readonly EfDatabaseContext _context = new EfDatabaseContext();
         private GenericRepository<User> _usersRepository;
+        private GenericRepository<Account> _accountRepository;
 
+        /// <summary>
+        /// Repository for Users
+        /// </summary>
         public GenericRepository<User> UsersRepository => _usersRepository ?? (_usersRepository = new GenericRepository<User>(_context));
+
+        /// <summary>
+        /// Repository for Accounts
+        /// </summary>
+        public GenericRepository<Account> AccountRepository
+            => _accountRepository ?? (_accountRepository = new GenericRepository<Account>(_context));
 
         /// <summary>
         /// Saving changes of UnitOfWork
@@ -18,7 +28,7 @@ namespace AccountingSystem.Domain.Concrete
             _context.SaveChanges();
         }
 
-        private bool _disposed = false;
+        private bool _disposed;
 
         protected virtual void Dispose(bool disposing)
         {

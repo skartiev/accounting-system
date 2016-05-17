@@ -8,17 +8,18 @@
     xmlns:view="clr-namespace:AccountingSystem.View"
     x:Class="AccountingSystem.View.MainWindow"
         mc:Ignorable="d"
-        Title="Accounting System" Height="350" Width="491.603">
+        Title="Accounting System" Height="361.81" Width="490.529">
     <Grid Margin="0,0,2,0">
-        <view:CustomDataGrid x:Name="dataGrid" Margin="10,10,12,0" VerticalAlignment="Top" Height="238" ItemsSource="{Binding Path = Users}" SelectedItemsList="{Binding Path=SelectedUsers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        <view:CustomDataGrid x:Name="dataGrid" Margin="12,10,10,222" ItemsSource="{Binding Path = Users}" SelectedItemsList="{Binding Path=SelectedUsers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
             <DataGrid.InputBindings>
                 <KeyBinding Key="Delete" Command="{Binding DeleteRowCommand}"/>
                 <KeyBinding Key="Back" Command="{Binding DeleteRowCommand}"/>
             </DataGrid.InputBindings>
 
         </view:CustomDataGrid>
-        <Button x:Name="button" Content="Show message" HorizontalAlignment="Left" Margin="273,274,0,0" VerticalAlignment="Top" Width="197" Command="{Binding ShowCommand}" CommandParameter="Hello"/>
-        <Button x:Name="btnAdd" Content="Add Account" HorizontalAlignment="Left" Margin="10,274,0,0" VerticalAlignment="Top" Width="197" Command="{Binding AddCommand}"/>
+        <Button x:Name="btnShow" Content="Show message" HorizontalAlignment="Left" Margin="273,274,0,0" Width="197" Command="{Binding ShowCommand}" CommandParameter="Hello" Padding="1" VerticalAlignment="Center"/>
+        <Button x:Name="btnAdd" Content="Add Account" HorizontalAlignment="Left" Margin="10,274,0,0" Width="197" Command="{Binding AddCommand}" VerticalContentAlignment="Top" VerticalAlignment="Center"/>
+        <DataGrid x:Name="dgrAccounts" HorizontalAlignment="Left" Margin="12,133,0,0" VerticalAlignment="Top" Height="141" Width="458"/>
 
     </Grid>
 </Window>

@@ -1,31 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace AccountingSystem.Domain.Entities
 {
+    /// <summary>
+    /// Rename to Account when delete older
+    /// </summary>
     public class Account
     {
-        private List<Entry> Entries { get; set; }
-
-        private Currency Currency { get; set; }
-
-        private void AddEntry(Money amount, DateTime date)
-        {
-            Entries.Add(new Entry(amount, date));
-        }
-
-        private Money GetBalance(DateRange range)
-        {
-            var currency = new Currency();
-            var resultMoney = new Money(0, currency);
-            foreach (var entry in Entries)
-            {
-                if (range.Includes(entry.Date))
-                {
-                    resultMoney.AddMoney(entry.GetAmount());
-                }
-            }
-            return resultMoney;
-        }
+        private string Login { get; set; }
+        private string Email { get; set; }
+        private string Password { get; set; }
     }
 }
